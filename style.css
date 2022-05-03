@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
+* {
+    box-sizing: border-box;
+}
+body {
+    width: 100vw;
+    height: 100vh;
+    background-color: #292524;
+    display: grid;
+    grid-template-rows: 1fr 5fr;
+    grid-template-columns: 1fr;
+    font-family: 'Roboto Condensed', sans-serif;
+    color: #fafaf9;
+    padding: 0px;
+    margin: 0px;
+}
+
+div.header {
+    grid-row: 1 / 2;
+    font-size: xx-large;
+    font-weight: bolder;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+
+div.main-section {
+    grid-row: 2 / 3;
+    width: 100vw;
+    background-color: #44403c;
+    
+}
+
+div.library {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 300px);
+    padding: 30px;
+    gap: 30px;
+}
+div#book.card {
+    padding: 10px;
+    display: grid;
+    grid-row: 1fr 1fr 1fr 1fr 1fr;
+    grid-column: 1fr;
+    border: solid 3px #fafaf9;
+    height: 300px;
+    border-radius: 10px;
+}
+div#add-book.card {
+    display: flex;
+    padding: 10px;
+    border: dotted 3px #fafaf9;
+    border-radius: 10px;
+    height: 300px;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+div#add-book.card > p {
+    font-size: xx-large;
+}
+div#add-book.card > img {
+    width: 50px;
+    height: 50px;
+}
+
+div.card-content {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+
+button.read, button.remove {
+    width: 250px;
+    height: 40px;
+    border-radius: 10px;
+    border-style: none;
+}
