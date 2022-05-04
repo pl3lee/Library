@@ -75,4 +75,14 @@ button.read, button.remove {
     height: 40px;
     border-radius: 10px;
     border-style: none;
+    color: white;
+}
+button.remove {
+    color: black;
+}
+button#false.read {
+    background-color: red;
+}
+button#true.read {
+    background-color:green;
 }
