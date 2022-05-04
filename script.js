@@ -1,5 +1,7 @@
 let libraryContainer = document.querySelector("div.library");
 let readButtons = document.querySelectorAll("button.read");
+let removeButtons = document.querySelectorAll("button.remove");
+// let addBook = document.querySelector("div#add-book.card");
 function Library() {
     this.contents = [];
 }
@@ -11,21 +13,21 @@ function Book(title, author, numPages, read) {
     this.read = read;
 }
 
-Book.prototype.toggleBookRead = function() {
+Book.prototype.toggleBookRead = function () {
     this.read = this.read ? false : true;
 }
 
-Library.prototype.addBook = function(title, author, numPages, read) {
+Library.prototype.addBook = function (title, author, numPages, read) {
     let newBook = new Book(title, author, numPages, read);
     this.contents.push(newBook);
     this.displayBooks();
 }
 
-Library.prototype.displayBooks = function() {
+Library.prototype.displayBooks = function () {
     // removes original cards
     libraryContainer.replaceChildren();
     // displays the actual books
-    this.contents.forEach(function(book, index) {
+    this.contents.forEach(function (book, index) {
         let displayTitle = book.title;
         let displayAuthor = book.author;
         let displayNumPages = book.numPages;
@@ -61,9 +63,10 @@ Library.prototype.displayBooks = function() {
         let newCardReadButton = document.createElement("button");
         newCardReadButton.classList.add("read");
         newCardReadButton.textContent = (displayRead) ? "Read" : "Not read";
-       
+
         newCardReadButton.setAttribute("id", displayRead ? "true" : "false");
-        
+        newCardReadButton.setAttribute("type", "button");
+
         newCardRead.appendChild(newCardReadButton);
 
         let newCardRemove = document.createElement("div");
@@ -72,6 +75,7 @@ Library.prototype.displayBooks = function() {
         let newCardRemoveButton = document.createElement("button");
         newCardRemoveButton.classList.add("remove");
         newCardRemoveButton.textContent = "Remove";
+        newCardRemoveButton.setAttribute("type", "button");
         newCardRemove.appendChild(newCardRemoveButton);
 
 
@@ -81,7 +85,7 @@ Library.prototype.displayBooks = function() {
         newCard.appendChild(newCardNumPages);
         newCard.appendChild(newCardRead);
         newCard.appendChild(newCardRemove);
-        
+
         libraryContainer.appendChild(newCard);
     });
     let addBookCard = document.createElement("div");
@@ -96,31 +100,53 @@ Library.prototype.displayBooks = function() {
     addBookCard.appendChild(addBookText);
 
     libraryContainer.appendChild(addBookCard);
+    updateReadButtons();
+    updateRemoveButtons();
+    // updateAddBookCard();
 }
 
-Library.prototype.removeBook = function(index) {
+Library.prototype.removeBook = function (index) {
     this.contents.splice(index, 1);
     this.displayBooks();
 }
 
-Library.prototype.toggleBookRead = function(index) {
+Library.prototype.toggleBookRead = function (index) {
     this.contents[index].toggleBookRead();
     this.displayBooks();
 }
 
-// readButtons.forEach(function(element) {
-//     element.addEventListener('click', event => {
-//         console.log("clicked")
-//         myLibrary.toggleBookRead(event.target.id);
-//         this.displayBooks();
+function updateReadButtons() {
+    readButtons = document.querySelectorAll("button.read");
+    readButtons.forEach(function (element) {
+        element.addEventListener("click", function (event) {
+            myLibrary.toggleBookRead(event.target.parentNode.parentNode.getAttribute('data-bookIndex'));
+            myLibrary.displayBooks();
+        });
+    });
+}
+
+function updateRemoveButtons() {
+    removeButtons = document.querySelectorAll("button.remove");
+    removeButtons.forEach(function (element) {
+        element.addEventListener("click", function (event) {
+            myLibrary.removeBook(event.target.parentNode.parentNode.getAttribute('data-bookIndex'));
+            myLibrary.displayBooks();
+        });
+    });
+}
+
+// function updateAddBookCard() {
+//     addBook = document.querySelector("div#remove.card-content");
+//     addBook.addEventListener("click", function (event) {
+//         changeAddBookCard();
 //     });
-// });
+// }
 
-
-
+// function changeAddBookCard() {
+//     let addBookTitle = document.createElement("input");
+// }
 
 
 let myLibrary = new Library();
-myLibrary.addBook("testTitle", "test Author", 1234, false)
 myLibrary.addBook("testTitle", "test Author", 12345, false)
-// myLibrary.removeBook(0);
+myLibrary.addBook("testTitle", "test Author", 123456, false)
