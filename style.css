@@ -70,8 +70,8 @@ div.card-content {
     align-items: center;
     overflow: auto;
     text-align: center;
+    height: 40px;
 }
-
 button.read, button.remove {
     width: 250px;
     height: 40px;
