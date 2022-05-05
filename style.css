@@ -68,6 +68,7 @@ div.card-content {
     display: grid;
     justify-content: center;
     align-items: center;
+    overflow: auto;
 }
 
 button.read, button.remove {
@@ -85,4 +86,33 @@ button#false.read {
 }
 button#true.read {
     background-color:green;
+}
+
+form.add-book-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+div.form-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    width: 250px;
+}
+
+div#read.form-container {
+    justify-content: center;
+}
+
+div#buttons.form-container {
+    justify-content: center;
+}
+
+div#buttons.form-container > button {
+    width: 100px;
+    height: 30px;
+    border-radius: 10px;
 }
